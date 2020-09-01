@@ -1,0 +1,10 @@
+#!/bin/bash
+echo $(dirname $0)
+cd $(dirname $0)/../distribution/target/rocketmq-4.7.1/rocketmq-4.7.1/
+
+mkdir -p ~/logs/rocketmqlogs/
+
+touch ~/logs/rocketmqlogs/broker.log
+
+nohup sh bin/mqbroker -n localhost:9876 &
+tail -f ~/logs/rocketmqlogs/broker.log

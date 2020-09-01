@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd $(dirname $0)/../distribution/target/rocketmq-4.7.1/rocketmq-4.7.1/
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+
+mvn -Prelease-all -DskipTests clean install -U

@@ -54,6 +54,7 @@ public class NamesrvStartup {
     public static NamesrvController main0(String[] args) {
 
         try {
+            // controler里面包含netty config和name server config
             NamesrvController controller = createNamesrvController(args);
             start(controller);
             String tip = "The Name Server boot success. serializeType=" + RemotingCommand.getSerializeTypeConfigInThisServer();
@@ -82,6 +83,7 @@ public class NamesrvStartup {
         final NamesrvConfig namesrvConfig = new NamesrvConfig();
         final NettyServerConfig nettyServerConfig = new NettyServerConfig();
         nettyServerConfig.setListenPort(9876);
+        //如果有-c则读取并设置到netty & name server config当中
         if (commandLine.hasOption('c')) {
             String file = commandLine.getOptionValue('c');
             if (file != null) {
@@ -112,6 +114,7 @@ public class NamesrvStartup {
             System.exit(-2);
         }
 
+        //加载logback config
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         JoranConfigurator configurator = new JoranConfigurator();
         configurator.setContext(lc);

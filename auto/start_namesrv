@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $(dirname $0)/../distribution/target/rocketmq-4.7.1/rocketmq-4.7.1
+
+mkdir -p ~/logs/rocketmqlogs/
+
+touch ~/logs/rocketmqlogs/namesrv.log
+
+nohup sh bin/mqnamesrv &
+tail -f ~/logs/rocketmqlogs/namesrv.log

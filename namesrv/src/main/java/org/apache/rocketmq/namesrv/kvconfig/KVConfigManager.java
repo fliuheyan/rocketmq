@@ -60,6 +60,9 @@ public class KVConfigManager {
 
     public void putKVConfig(final String namespace, final String key, final String value) {
         try {
+            //同一时间只允许一个线程写name server
+            //但是允许多线程读name server
+            //问题，是不允许对block中的所有变量进行修改？？
             this.lock.writeLock().lockInterruptibly();
             try {
                 HashMap<String, String> kvTable = this.configTable.get(namespace);
